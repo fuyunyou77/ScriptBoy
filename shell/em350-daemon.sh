@@ -11,9 +11,14 @@ INITIAL_DELAY=90
 POST_DIAL_DELAY=30
 MICROCOM_TIMEOUT=2000
 RESPONSE_FILE="/tmp/em350_response.tmp"
+MICROCOM_LOCK_FILE="/var/lock/LCK..ttyUSB2"
 
 start() {
     echo "启动EM350 4G模块守护进程(完全修正版)..."
+
+    # 删除旧的microcom锁文件
+    rm -f $MICROCOM_LOCK_FILE
+
     sleep $INITIAL_DELAY
 
     while true; do
